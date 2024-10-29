@@ -1,0 +1,17 @@
+langchain
+langchain-core
+langchain-openai
+langchain_community
+langchain_experimental
+langgraph
+python-dotenv
+langsmith
+fastapi
+PyPDF2
+pydantic
+uvicorn
+pymongo
+matplotlib
+pandas
+plotly
+Numpy
