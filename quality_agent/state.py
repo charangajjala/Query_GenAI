@@ -12,3 +12,5 @@ class MultiAgentState(AgentState):
     rephrasedQuestion: Optional[str]
     mongoQueryResult: Optional[list]
     chart: Optional[str]
+    newSale: Optional[Dict[str, Any]]
+
