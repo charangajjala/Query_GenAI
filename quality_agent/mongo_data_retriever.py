@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from langchain.chains import LLMChain
-from llmManager import LLMManager
+from quality_agent.llmManager import LLMManager
 from datetime import datetime
 from prompts.inspectionPrompt import get_sample_analytics_mongodb_prompt, query_examples, get_fetch_collections_prompt,get_fetch_sales_prompt, all_schemas, sales_schema, sale_query_examples
 from quality_agent.logger import setup_logger

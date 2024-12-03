@@ -23,3 +23,6 @@ langchain-nvidia-ai-endpoints
 langchain-fireworks
 langchain-groq
 langchain-cerebras
+langchain_google_genai
+streamlit
+requests

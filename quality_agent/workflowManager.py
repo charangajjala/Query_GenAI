@@ -1,7 +1,7 @@
 from typing import Literal
 from langgraph.graph import StateGraph, END
-from state import MultiAgentState
-from llmManager import LLMManager
+from quality_agent.state import MultiAgentState
+from quality_agent.llmManager import LLMManager
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.runnables.graph import MermaidDrawMethod
 from tools.inspectionTools import inspectionTools
@@ -10,7 +10,7 @@ from prompts.routerPrompt import get_router_prompt
 from prompts.inspectionPrompt import get_inspection_prompt
 from prompts.actionsPrompt import get_schedule_prompt
 from langgraph.checkpoint.memory import MemorySaver
-from plot_generator import rephrase_user_query_for_visualization, generate_mongo_query, generate_chart_based_on_query
+from quality_agent.plot_generator import rephrase_user_query_for_visualization, generate_mongo_query, generate_chart_based_on_query
 from langgraph.errors import NodeInterrupt
 from dateutil.parser import isoparse
 from langchain_community.chat_message_histories import ChatMessageHistory
@@ -176,6 +176,7 @@ class WorkflowManager:
 
 
             # plot_base64 = base64.b64encode(img_bytes).decode("utf-8")
+            
 
             def plotly_to_base64(fig, buffer=None):
                 if buffer is None:

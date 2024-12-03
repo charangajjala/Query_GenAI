@@ -1,10 +1,10 @@
-from workflowManager import WorkflowManager
+from quality_agent.workflowManager import WorkflowManager
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from models.models import Query, QueryResponse
 from langchain.globals import set_debug, set_verbose
-from llmManager import LLMManager
+from quality_agent.llmManager import LLMManager
 from typing import List
 from quality_agent.logger import setup_logger
 import json
@@ -146,3 +146,6 @@ if __name__ == "__main__":
     except Exception as e:
         logger.error(f"Error starting the application: {e}")
         raise
+
+
+#uvicorn quality_agent.main:app --host 0.0.0.0 --port 8000
