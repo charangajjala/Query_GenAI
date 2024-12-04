@@ -162,6 +162,12 @@ class WorkflowManager:
             
             # Assuming `state['chart']` contains the Plotly figure JSON
             fig = pio.from_json(state['chart'])
+            
+            chart_json=fig
+            return {
+            "chart": chart_json,  # Send chart JSON directly
+            "answer": "The requested plot has been generated successfully.",
+           }
 
             # # Optimize for lower quality and faster processing
             # pio.kaleido.scope.default_width = 400  # Reduce width

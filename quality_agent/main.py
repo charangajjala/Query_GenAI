@@ -94,20 +94,21 @@ async def runQuery(query: Query) -> QueryResponse:
                 visualization_response = (
                     stream_data.get('visualization_node') or
                     stream_data.get('generate_mongo_query_node') or
-                    stream_data.get('generate_chart_node')
+                    stream_data.get('generate_chart_node') or
+                    stream_data.get('analyze_plot_node')
                 )
-                analyzing_plot_response =  stream_data.get('analyze_plot_node')
-                interrupt_responses = stream_data.get('__interrupt__')
+                # analyzing_plot_response =  stream_data.get('analyze_plot_node')
+                # interrupt_responses = stream_data.get('__interrupt__')
                 if node_response:
                     finalResponse.answer = node_response.get('answer')
                 elif visualization_response:
                     finalResponse.chart = visualization_response.get('chart')
                     finalResponse.answer = visualization_response.get('answer')
-                elif analyzing_plot_response:
-                    finalResponse.answer = analyzing_plot_response.get('answer')
-                elif interrupt_responses:
-                    finalResponse.answer = '\n'.join(
-                        message.value for message in interrupt_responses)
+                # elif analyzing_plot_response:
+                #     finalResponse.answer = analyzing_plot_response.get('answer')
+                # elif interrupt_responses:
+                #     finalResponse.answer = '\n'.join(
+                #         message.value for message in interrupt_responses)
 
         if finalResponse.answer == '' and finalResponse.chart == '':
             finalResponse.answer = "Unable to process the query. Could you provide more information?"

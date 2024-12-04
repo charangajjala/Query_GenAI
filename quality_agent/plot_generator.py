@@ -128,7 +128,7 @@ def generate_chart_based_on_query(state):
                 logger.error("No plot was generated.")
                 return {"chart": None}
             
-            final_response_plot.show()
+            #final_response_plot.show()
 
 
             # Convert the plot to JSON
