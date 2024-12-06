@@ -1,7 +1,7 @@
 import json
 import matplotlib.pyplot as plt
 from langchain.chains import LLMChain
-from llmManager import LLMManager
+from quality_agent.llmManager import LLMManager
 from quality_agent.mongo_data_retriever import get_sales_data
 from prompts.inspectionPrompt import sales_schema as collection_schema
 from prompts.visualizationPrompt import create_query_generation_prompt, create_code_generation_prompt
@@ -128,7 +128,7 @@ def generate_chart_based_on_query(state):
                 logger.error("No plot was generated.")
                 return {"chart": None}
             
-            final_response_plot.show()
+            #final_response_plot.show()
 
 
             # Convert the plot to JSON

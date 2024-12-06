@@ -23,7 +23,7 @@ schedule_prompt = (
         - `couponUsed` (Boolean): Indicates whether a coupon was used during the purchase (True/False).
         - `purchaseMethod` (String): The method used to complete the purchase (e.g., "Online", "In store", "Phone").
 
-        If any of the above fields related data doesnt exist in the given receipt/bill image, then fill the missing information with empty string.
+        If any of the above fields related data does not exist in the given receipt/bill image, then fill the missing information with empty string.
     The user's request is:{question}
     Today's date is {present_date}
     """
