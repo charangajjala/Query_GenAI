@@ -274,16 +274,16 @@ class WorkflowManager:
             workflow.add_node("router_node", self.router_agent)
             workflow.set_entry_point("router_node")
             workflow.add_node("query_data_node", self.query_data_node)
-            workflow.add_node("analyze_plot_node", self.analyze_plot_node)
+            # workflow.add_node("analyze_plot_node", self.analyze_plot_node)
             workflow.add_node(
                 "visualization_node",
                 rephrase_user_query_for_visualization)
-            workflow.add_node(
-                "record_sales_node",
-                self.record_sales_node)
-            workflow.add_node(
-                "human_record_sales_confirmation_node",
-                self.human_record_sales_confirmation_node)
+            # workflow.add_node(
+            #     "record_sales_node",
+            #     self.record_sales_node)
+            # workflow.add_node(
+            #     "human_record_sales_confirmation_node",
+            #     self.human_record_sales_confirmation_node)
             workflow.add_node(
                 "generate_mongo_query_node",
                 generate_mongo_query)
@@ -301,18 +301,18 @@ class WorkflowManager:
                   
                     'Visualization': 'visualization_node',
                     'Query_Data': 'query_data_node',
-                    'Record_Sales': 'record_sales_node',
+                    # 'Record_Sales': 'record_sales_node',
                     'Help': 'help_node',
                     'NoContext': 'no_context_node',
-                    'Analyze_Plot': 'analyze_plot_node'
+                    # 'Analyze_Plot': 'analyze_plot_node'
                 }
             )
 
             workflow.add_edge("query_data_node", END)
-            workflow.add_edge(
-                "record_sales_node",
-                'human_record_sales_confirmation_node')
-            workflow.add_edge("human_record_sales_confirmation_node", END)
+            # workflow.add_edge(
+            #     "record_sales_node",
+            #     'human_record_sales_confirmation_node')
+            # workflow.add_edge("human_record_sales_confirmation_node", END)
             workflow.add_edge(
                 "visualization_node",
                 "generate_mongo_query_node")
@@ -320,7 +320,7 @@ class WorkflowManager:
                 "generate_mongo_query_node",
                 "generate_chart_node")
             workflow.add_edge("generate_chart_node", END)
-            workflow.add_edge("analyze_plot_node", END)
+            # workflow.add_edge("analyze_plot_node", END)
             workflow.add_edge("help_node", END)
             workflow.add_edge("no_context_node", END)
 
@@ -336,7 +336,7 @@ class WorkflowManager:
             memory = MemorySaver()
             enableDebugging = os.getenv("ENABLE_DEBUGGING") == "true"
             graph = self.create_workflow().compile(checkpointer=memory, debug=enableDebugging,
-                                                   interrupt_before=["human_record_sales_confirmation_node"])
+                                                   )
             graph.name = "Text to NoSQL Agent Graph"
             # Draw the graph and get the bytes
             image_bytes = graph.get_graph().draw_mermaid_png(
