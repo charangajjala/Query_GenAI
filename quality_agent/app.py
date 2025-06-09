@@ -9,7 +9,7 @@ load_dotenv()
 
 API_URL = "http://localhost:8000/query"
 
-st.title("QUERYGPT")
+st.title("AI- Text to Query Project Chatbot")
 
 # # Sidebar for Configuration
 # st.sidebar.header("Configuration")

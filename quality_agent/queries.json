@@ -1,0 +1,31 @@
+[
+  {
+    "$unwind": {
+      "path": "$items",
+      "preserveNullAndEmptyArrays": true
+    }
+  },
+  {
+    "$group": {
+      "_id": "$items.name",
+      "totalQuantity": {
+        "$sum": "$items.quantity"
+      }
+    }
+  },
+  {
+    "$sort": {
+      "totalQuantity": -1
+    }
+  },
+  {
+    "$limit": 5
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "itemName": "$_id",
+      "totalQuantity": 1
+    }
+  }
+]

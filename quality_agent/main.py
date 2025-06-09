@@ -36,8 +36,7 @@ try:
     logger.info("Initializing managers")
     llm_manager = LLMManager()
 
-    workflow_manager = WorkflowManager(
-        llm_manager=llm_manager)
+    workflow_manager = WorkflowManager(llm_manager=llm_manager)
     logger.info("Managers initialized successfully")
 except Exception as e:
     logger.error(f"Error initializing managers: {e}")
@@ -74,7 +73,7 @@ async def runQuery(query: Query) -> QueryResponse:
     try:
         logger.info(f"Processing query: {query.query}")
         response = []
-        finalResponse = QueryResponse(answer='', chart='', reviewImage=None)
+        finalResponse = QueryResponse(answer="", chart="", reviewImage=None)
         config = {"configurable": {"thread_id": "1"}, "recursion_limit": 100}
         input = {"question": query.query}
         state = graph.get_state(config)
@@ -84,34 +83,36 @@ async def runQuery(query: Query) -> QueryResponse:
             if "__end__" not in stream_data:
                 response.append(stream_data)
                 node_response = (
-                    stream_data.get('query_data_node') or
-                    stream_data.get('record_sales_node') or
-                    stream_data.get('human_record_sales_confirmation_node') or
-                    stream_data.get('help_node') or
-                    stream_data.get('no_context_node')
+                    stream_data.get("query_data_node")
+                    or stream_data.get("record_sales_node")
+                    or stream_data.get("human_record_sales_confirmation_node")
+                    or stream_data.get("help_node")
+                    or stream_data.get("no_context_node")
                 )
-               
+
                 visualization_response = (
-                    stream_data.get('visualization_node') or
-                    stream_data.get('generate_mongo_query_node') or
-                    stream_data.get('generate_chart_node') or
-                    stream_data.get('analyze_plot_node')
+                    stream_data.get("visualization_node")
+                    or stream_data.get("generate_mongo_query_node")
+                    or stream_data.get("generate_chart_node")
+                    or stream_data.get("analyze_plot_node")
                 )
                 # analyzing_plot_response =  stream_data.get('analyze_plot_node')
                 # interrupt_responses = stream_data.get('__interrupt__')
                 if node_response:
-                    finalResponse.answer = node_response.get('answer')
+                    finalResponse.answer = node_response.get("answer")
                 elif visualization_response:
-                    finalResponse.chart = visualization_response.get('chart')
-                    finalResponse.answer = visualization_response.get('answer')
+                    finalResponse.chart = visualization_response.get("chart")
+                    finalResponse.answer = visualization_response.get("answer")
                 # elif analyzing_plot_response:
                 #     finalResponse.answer = analyzing_plot_response.get('answer')
                 # elif interrupt_responses:
                 #     finalResponse.answer = '\n'.join(
                 #         message.value for message in interrupt_responses)
 
-        if finalResponse.answer == '' and finalResponse.chart == '':
-            finalResponse.answer = "Unable to process the query. Could you provide more information?"
+        if finalResponse.answer == "" and finalResponse.chart == "":
+            finalResponse.answer = (
+                "Unable to process the query. Could you provide more information?"
+            )
         logger.info(f"Query processed successfully: {finalResponse.answer}")
         return finalResponse
     except Exception as e:
@@ -126,12 +127,11 @@ def handleInterrupts(query, config, state, input):
             # Checks if there are any interrupts or breakpoints in the earlier
             # call.
             if (
-                task.name == "record_sales_node" or
-                task.name == "human_record_sales_confirmation_node"
+                task.name == "record_sales_node"
+                or task.name == "human_record_sales_confirmation_node"
             ):
                 input = None
-                graph.update_state(config=config, values={
-                    "question": query.query})
+                graph.update_state(config=config, values={"question": query.query})
         logger.info("Interrupts handled successfully")
         return input
     except Exception as e:
@@ -143,10 +143,11 @@ if __name__ == "__main__":
     try:
         logger.info("Starting the application")
         import uvicorn
+
         uvicorn.run(app, host="0.0.0.0", port=8000)
     except Exception as e:
         logger.error(f"Error starting the application: {e}")
         raise
 
 
-#uvicorn quality_agent.main:app --host 0.0.0.0 --port 8000
+# uvicorn quality_agent.main:app --host 0.0.0.0 --port 8000
