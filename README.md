@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="Assets/llm_sql_banner.png" height="160" alt="Text-to-SQL Banner"/>
+  <img src="Assets/banner_image.png" height="160" alt="Text-to-SQL Banner"/>
 </p>
 
 <h1 align="center">🧠 LLM-Based Text-to-NoSQL Chatbot</h1>
