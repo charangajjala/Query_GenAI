@@ -136,6 +136,29 @@ This design emphasizes:
 
 ---
 
+## Contrbutors <img src="https://raw.githubusercontent.com/TheDudeThatCode/TheDudeThatCode/master/Assets/Developer.gif" width=35 height=25>
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/charangajjala" target="_blank">
+          <img src="https://avatars.githubusercontent.com/u/64437927?v=4" width="100px" alt="Charan Gajjala" />
+          <br />
+          <sub><b>Charan Gajjala Chenchu</b></sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/kalluri14"
+          target="_blank">
+          <img src="https://avatars.githubusercontent.com/u/74588553?v=4" width="100px" alt="Prem Jampuram" />
+          <br />
+          <sub><b>Divija Kalluri</b></sub>
+        </a>
+      </td>
+  </tbody>
+</table>
+
 ## 📚 References
 
 1. [QueryGPT by Uber](https://www.uber.com/blog/query-gpt/)
